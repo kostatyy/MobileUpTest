@@ -17,13 +17,19 @@ class VKManager {
     private let redirect_uri = "http://mobileUp.com/verify"
     private let scopes = "photos"
     
+    // Constants For Photos
+    private let vkApiMethod = "https://api.vk.com/method"
+    private let ownerId = -128666765
+    private let albumId = 266276915
+
+    
     var isSignedIn: Bool {
         guard let _ = accessToken, let expirationDate = tokenExpirationDate else { // If there is no access token and exp. Date
             return false
         }
         
         let curDate = Date()
-        return curDate >= expirationDate // Checking whether the token has expired
+        return expirationDate >= curDate // Checking whether the token has expired
     }
     
     private var accessToken: String? {
@@ -68,5 +74,40 @@ class VKManager {
     private func cacheToken(result: VKAuthResponse) {
         UserDefaults.standard.setValue(result.access_token, forKey: "access_token")
         UserDefaults.standard.setValue(Date().addingTimeInterval(TimeInterval(result.expires_in)), forKey: "expirationDate")
+    }
+    
+    // Get Photos Urls
+    public func getPhotos(completion: @escaping ([String])->()) {
+        guard let access_token = accessToken else {return}
+        let photosAPI = "\(vkApiMethod)/photos.get?owner_id=\(ownerId)&album_id=\(albumId)&access_token=\(access_token)&v=5.77"
+
+        let url = URL(string: photosAPI)!
+        let request = URLRequest(url: url)
+        
+        let task = URLSession.shared.dataTask(with: request) {(data, resp, error) in
+            guard error == nil else { return }
+            guard let data = data else { return }
+            
+            
+            do {
+                let resp: PhotoResponse = try JSONDecoder().decode(PhotoResponse.self, from: data)
+                let filteredPhotos = resp.response.items.flatMap { // Filtering Photos By Type
+                    $0.sizes.filter { size in
+                        return size.type == "z"
+                    }
+                }
+                
+                var urls = [String]()
+                filteredPhotos.forEach { // Getting Urls Of Images
+                    urls.append($0.url)
+                }
+                
+                completion(urls)
+
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        task.resume()
     }
 }

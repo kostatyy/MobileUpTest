@@ -13,7 +13,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var topLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
     
-    var viewModel = LoginViewModel()
+    private var viewModel = LoginViewModel()
     
     /* VK Web View */
     private var vkWebView: WKWebView!
@@ -21,6 +21,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
         setupViews()
     }
@@ -51,7 +52,6 @@ extension LoginViewController: WKNavigationDelegate {
         vkWebView.translatesAutoresizingMaskIntoConstraints = false
         
         guard let url = VKManager.shared.signInUrl else { return }
-        print(url)
         let urlRequest = URLRequest.init(url: url)
         vkWebView.load(urlRequest)
         
@@ -63,8 +63,16 @@ extension LoginViewController: WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        viewModel.requestForCallbackURL(request: navigationAction.request) {
-            self.dismiss(animated: true, completion: nil)
+        viewModel.requestForCallbackURL(request: navigationAction.request) { resp in
+            DispatchQueue.main.async {
+                self.dismiss(animated: true) {
+                    if resp {
+                        let galleryVC: GalleryViewController = .instantiate()
+                        self.navigationController?.pushViewController(galleryVC, animated: true)
+                    }
+                }
+            }
+            
         }
         
         decisionHandler(.allow)

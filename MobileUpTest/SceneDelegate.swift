@@ -18,14 +18,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         
         if VKManager.shared.isSignedIn { // If VK user is logged in
-            print(true)
+            let galleryVC: GalleryViewController = .instantiate(storyboardName: "Main")
+            navigationController = UINavigationController(rootViewController: galleryVC)
         } else {
-            print(false)
+            let loginVC: LoginViewController = .instantiate(storyboardName: "Main")
+            navigationController = UINavigationController(rootViewController: loginVC)
         }
-        
-        let rootVC: LoginViewController = .instantiate(storyboardName: "Main")
-        navigationController = UINavigationController(rootViewController: rootVC)
-        navigationController?.navigationBar.isHidden = true
+
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }

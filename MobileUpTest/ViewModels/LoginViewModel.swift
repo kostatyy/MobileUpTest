@@ -10,7 +10,7 @@ import UIKit
 class LoginViewModel {
     
     /* VK Auth */
-    func requestForCallbackURL(request: URLRequest, completion: @escaping ()->()) {
+    func requestForCallbackURL(request: URLRequest, completion: @escaping (Bool)->(Void)) {
         
         // Exchange code for access token
         let requestURLString = (request.url?.absoluteString)! as String
@@ -21,8 +21,8 @@ class LoginViewModel {
             return
         }
         
-        VKManager.shared.exchangeCodeForToken(code: code) { (success) in
-            print(success)
+        VKManager.shared.exchangeCodeForToken(code: code) { (resp) in
+            completion(resp)
         }
     }
     

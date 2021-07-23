@@ -19,6 +19,12 @@
 		524F8B2626A9FB62006EB315 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524F8B2526A9FB62006EB315 /* LoginViewModel.swift */; };
 		524F8B2926A9FEC2006EB315 /* VKAuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524F8B2826A9FEC2006EB315 /* VKAuthResponse.swift */; };
 		524F8B2F26AAE59A006EB315 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524F8B2E26AAE59A006EB315 /* UIViewController+Ext.swift */; };
+		524F8B3226AAE7AC006EB315 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524F8B3126AAE7AC006EB315 /* GalleryViewController.swift */; };
+		524F8B3626AAECB8006EB315 /* GalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524F8B3526AAECB8006EB315 /* GalleryViewModel.swift */; };
+		524F8B4126AAFCBE006EB315 /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524F8B4026AAFCBE006EB315 /* GalleryCell.swift */; };
+		524F8B4626AAFDCD006EB315 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524F8B4526AAFDCD006EB315 /* UIView+Ext.swift */; };
+		524F8B4C26AB0675006EB315 /* GalleryPhotoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524F8B4B26AB0675006EB315 /* GalleryPhotoResponse.swift */; };
+		524F8B5026AB2979006EB315 /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524F8B4F26AB2979006EB315 /* UIImageView+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +42,12 @@
 		524F8B2526A9FB62006EB315 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		524F8B2826A9FEC2006EB315 /* VKAuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKAuthResponse.swift; sourceTree = "<group>"; };
 		524F8B2E26AAE59A006EB315 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		524F8B3126AAE7AC006EB315 /* GalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		524F8B3526AAECB8006EB315 /* GalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryViewModel.swift; sourceTree = "<group>"; };
+		524F8B4026AAFCBE006EB315 /* GalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
+		524F8B4526AAFDCD006EB315 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		524F8B4B26AB0675006EB315 /* GalleryPhotoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryPhotoResponse.swift; sourceTree = "<group>"; };
+		524F8B4F26AB2979006EB315 /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +84,7 @@
 				524F8AF626A9B70B006EB315 /* SceneDelegate.swift */,
 				524F8B1426A9EB3C006EB315 /* Extensions */,
 				524F8B2B26A9FEED006EB315 /* Models */,
+				524F8B3F26AAFCB5006EB315 /* Views */,
 				524F8B1D26A9EEE7006EB315 /* Services */,
 				524F8B2426A9FB56006EB315 /* ViewModels */,
 				524F8B0F26A9BAC4006EB315 /* Controllers */,
@@ -87,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				524F8B0A26A9BABE006EB315 /* LoginViewController.swift */,
+				524F8B3126AAE7AC006EB315 /* GalleryViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -94,9 +108,11 @@
 		524F8B1426A9EB3C006EB315 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				524F8B2E26AAE59A006EB315 /* UIViewController+Ext.swift */,
+				524F8B4F26AB2979006EB315 /* UIImageView+Ext.swift */,
+				524F8B4526AAFDCD006EB315 /* UIView+Ext.swift */,
 				524F8B1926A9EBA3006EB315 /* UIDevice+Ext.swift */,
 				524F8B1526A9EB67006EB315 /* UIFont+Ext.swift */,
-				524F8B2E26AAE59A006EB315 /* UIViewController+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -113,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				524F8B2526A9FB62006EB315 /* LoginViewModel.swift */,
+				524F8B3526AAECB8006EB315 /* GalleryViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -121,8 +138,17 @@
 			isa = PBXGroup;
 			children = (
 				524F8B2826A9FEC2006EB315 /* VKAuthResponse.swift */,
+				524F8B4B26AB0675006EB315 /* GalleryPhotoResponse.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		524F8B3F26AAFCB5006EB315 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				524F8B4026AAFCBE006EB315 /* GalleryCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,13 +221,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				524F8B4126AAFCBE006EB315 /* GalleryCell.swift in Sources */,
+				524F8B3626AAECB8006EB315 /* GalleryViewModel.swift in Sources */,
 				524F8B1F26A9EEEE006EB315 /* VKManager.swift in Sources */,
+				524F8B4C26AB0675006EB315 /* GalleryPhotoResponse.swift in Sources */,
 				524F8B2926A9FEC2006EB315 /* VKAuthResponse.swift in Sources */,
 				524F8B1626A9EB67006EB315 /* UIFont+Ext.swift in Sources */,
 				524F8B0C26A9BABE006EB315 /* LoginViewController.swift in Sources */,
+				524F8B5026AB2979006EB315 /* UIImageView+Ext.swift in Sources */,
 				524F8B1A26A9EBA3006EB315 /* UIDevice+Ext.swift in Sources */,
 				524F8AF526A9B70B006EB315 /* AppDelegate.swift in Sources */,
 				524F8AF726A9B70B006EB315 /* SceneDelegate.swift in Sources */,
+				524F8B4626AAFDCD006EB315 /* UIView+Ext.swift in Sources */,
+				524F8B3226AAE7AC006EB315 /* GalleryViewController.swift in Sources */,
 				524F8B2626A9FB62006EB315 /* LoginViewModel.swift in Sources */,
 				524F8B2F26AAE59A006EB315 /* UIViewController+Ext.swift in Sources */,
 			);
