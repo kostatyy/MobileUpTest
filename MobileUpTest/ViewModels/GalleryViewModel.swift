@@ -10,13 +10,20 @@ import UIKit
 class GalleryViewModel {
     
     var photo_urls = [String]()
+    var photos = [Photo]()
     
     // Get Photos Urls
     func getPhotos(completion: @escaping ()->()) {
-        VKManager.shared.getPhotos { (urls) in
-            self.photo_urls = urls
-            completion()
-        }
+        
+        photos = PhotosCoreDataManager.shared.fetchPhotos()
+
+        if photos.count == 0 { // If There Is No CoreData For Photo Yet
+            VKManager.shared.getPhotos { (urls) in
+                self.photo_urls = urls
+                completion()
+            }
+        } else { completion() }
+        
     }
     
     // Logging out from VK account

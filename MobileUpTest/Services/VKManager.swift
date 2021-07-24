@@ -88,9 +88,15 @@ class VKManager {
             guard error == nil else { return }
             guard let data = data else { return }
             
+            var photos_array = [PhotoItem]()
             
             do {
                 let resp: PhotoResponse = try JSONDecoder().decode(PhotoResponse.self, from: data)
+                resp.response.items.forEach { item in
+                    let photo_item = PhotoItem(url: nil, date: item.date)
+                    photos_array.append(photo_item)
+                }
+                
                 let filteredPhotos = resp.response.items.flatMap { // Filtering Photos By Type
                     $0.sizes.filter { size in
                         return size.type == "z"
@@ -98,10 +104,18 @@ class VKManager {
                 }
                 
                 var urls = [String]()
-                filteredPhotos.forEach { // Getting Urls Of Images
-                    urls.append($0.url)
-                }
+                var i = 0
                 
+                filteredPhotos.forEach { // Getting Urls Of Images
+                    photos_array[i].url = $0.url
+                    
+                    guard PhotosCoreDataManager.shared.savePhoto(photoItem: photos_array[i]) != nil else { // Saving Photo To CoreData
+                        return
+                    }
+                    urls.append($0.url)
+                    i += 1
+                }
+
                 completion(urls)
 
             } catch {

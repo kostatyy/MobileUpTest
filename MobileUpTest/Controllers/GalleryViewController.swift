@@ -53,21 +53,27 @@ class GalleryViewController: UIViewController {
 extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.photo_urls.count
+        return viewModel.photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryCell.reuseId, for: indexPath) as! GalleryCell
-//        cell.update(viewModel: GalleryCellViewModel(url: viewModel.photo_urls[indexPath.row]))
-        cell.galleryImageView.loadUserImage(urlString: viewModel.photo_urls[indexPath.row])
+        cell.galleryImageView.loadUserImage(urlString: viewModel.photos[indexPath.row].url!)
+//        cell.galleryImageView.loadUserImage(urlString: viewModel.photo_urls[indexPath.row])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let photoVC: PhotoViewController = .instantiate()
+        photoVC.photo = viewModel.photos[indexPath.row]
+        navigationController?.pushViewController(photoVC, animated: true)
     }
     
     // Custom Layout
     private func createCompostionalLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnv) -> NSCollectionLayoutSection? in
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5),
-                                                          heightDimension: .fractionalHeight(1.0))
+                                                  heightDimension: .fractionalHeight(1.0))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             item.contentInsets = .init(top: 1, leading: 1, bottom: 1, trailing: 1)
             

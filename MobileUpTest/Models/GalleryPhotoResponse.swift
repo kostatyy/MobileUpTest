@@ -16,10 +16,17 @@ struct PhotoItems: Codable {
 }
 
 struct PhotoSizes: Codable {
+    let date: Int
+    let id: Int
     let sizes: [PhotoInfo]
 }
 
 struct PhotoInfo: Codable {
     let type: String
     let url: String
+}
+
+struct PhotoItem: Codable {
+    var url: String?
+    let date: Int
 }

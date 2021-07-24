@@ -97,6 +97,46 @@ Gallery</string>
             </objects>
             <point key="canvasLocation" x="892.75362318840587" y="75.669642857142847"/>
         </scene>
+        <!--Photo View Controller-->
+        <scene sceneID="8FK-go-IXn">
+            <objects>
+                <viewController storyboardIdentifier="PhotoViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hVo-3p-NPA" customClass="PhotoViewController" customModule="MobileUpTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Cf8-fW-BBp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7rs-up-4vt">
+                                <rect key="frame" x="0.0" y="251.5" width="414" height="403"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2jm-Cg-eAc">
+                                <rect key="frame" x="106" y="352" width="202" height="202"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="2jm-Cg-eAc" secondAttribute="height" multiplier="1:1" id="GWs-WJ-Hbb"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="V7z-A3-rn1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2jm-Cg-eAc" firstAttribute="centerX" secondItem="7rs-up-4vt" secondAttribute="centerX" id="1xB-Jb-xmQ"/>
+                            <constraint firstItem="2jm-Cg-eAc" firstAttribute="centerY" secondItem="7rs-up-4vt" secondAttribute="centerY" id="3eI-ot-gZS"/>
+                            <constraint firstItem="7rs-up-4vt" firstAttribute="width" secondItem="Cf8-fW-BBp" secondAttribute="width" id="5Ra-FE-7Fy"/>
+                            <constraint firstItem="7rs-up-4vt" firstAttribute="centerY" secondItem="V7z-A3-rn1" secondAttribute="centerY" id="HV4-BK-87z"/>
+                            <constraint firstItem="2jm-Cg-eAc" firstAttribute="height" secondItem="7rs-up-4vt" secondAttribute="height" multiplier="0.5" id="Xqa-WZ-tcG"/>
+                            <constraint firstItem="7rs-up-4vt" firstAttribute="centerX" secondItem="V7z-A3-rn1" secondAttribute="centerX" id="ZAG-Jz-7gZ"/>
+                            <constraint firstItem="7rs-up-4vt" firstAttribute="height" secondItem="Cf8-fW-BBp" secondAttribute="height" multiplier="0.45" id="jea-lU-feu"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addedPhotoImageView" destination="2jm-Cg-eAc" id="rs9-qu-UN2"/>
+                        <outlet property="photoImageView" destination="7rs-up-4vt" id="7Nr-lw-LBh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IGl-sQ-VaR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1672" y="76"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
