@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -105,7 +106,7 @@ Gallery</string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7rs-up-4vt">
+                            <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7rs-up-4vt">
                                 <rect key="frame" x="0.0" y="251.5" width="414" height="403"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2jm-Cg-eAc">
@@ -115,6 +116,21 @@ Gallery</string>
                                     <constraint firstAttribute="width" secondItem="2jm-Cg-eAc" secondAttribute="height" multiplier="1:1" id="GWs-WJ-Hbb"/>
                                 </constraints>
                             </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="V62-Ep-9HL">
+                                <rect key="frame" x="0.0" y="772.5" width="414" height="89.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewLayout key="collectionViewLayout" id="gEX-ng-xsD"/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="98v-yW-U9X">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Krp-XL-5ak">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="V7z-A3-rn1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -123,14 +139,19 @@ Gallery</string>
                             <constraint firstItem="2jm-Cg-eAc" firstAttribute="centerY" secondItem="7rs-up-4vt" secondAttribute="centerY" id="3eI-ot-gZS"/>
                             <constraint firstItem="7rs-up-4vt" firstAttribute="width" secondItem="Cf8-fW-BBp" secondAttribute="width" id="5Ra-FE-7Fy"/>
                             <constraint firstItem="7rs-up-4vt" firstAttribute="centerY" secondItem="V7z-A3-rn1" secondAttribute="centerY" id="HV4-BK-87z"/>
+                            <constraint firstItem="V62-Ep-9HL" firstAttribute="width" secondItem="Cf8-fW-BBp" secondAttribute="width" id="P4f-qr-bSJ"/>
                             <constraint firstItem="2jm-Cg-eAc" firstAttribute="height" secondItem="7rs-up-4vt" secondAttribute="height" multiplier="0.5" id="Xqa-WZ-tcG"/>
                             <constraint firstItem="7rs-up-4vt" firstAttribute="centerX" secondItem="V7z-A3-rn1" secondAttribute="centerX" id="ZAG-Jz-7gZ"/>
+                            <constraint firstItem="V7z-A3-rn1" firstAttribute="bottom" secondItem="V62-Ep-9HL" secondAttribute="bottom" id="dls-If-4z0"/>
                             <constraint firstItem="7rs-up-4vt" firstAttribute="height" secondItem="Cf8-fW-BBp" secondAttribute="height" multiplier="0.45" id="jea-lU-feu"/>
+                            <constraint firstItem="V62-Ep-9HL" firstAttribute="centerX" secondItem="V7z-A3-rn1" secondAttribute="centerX" id="mUB-6T-cGL"/>
+                            <constraint firstItem="V62-Ep-9HL" firstAttribute="height" secondItem="Cf8-fW-BBp" secondAttribute="height" multiplier="0.1" id="nXZ-fB-HA3"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="addedPhotoImageView" destination="2jm-Cg-eAc" id="rs9-qu-UN2"/>
                         <outlet property="photoImageView" destination="7rs-up-4vt" id="7Nr-lw-LBh"/>
+                        <outlet property="photosCollectionView" destination="V62-Ep-9HL" id="2TE-RY-jki"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IGl-sQ-VaR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

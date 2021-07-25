@@ -59,13 +59,15 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GalleryCell.reuseId, for: indexPath) as! GalleryCell
         cell.galleryImageView.loadUserImage(urlString: viewModel.photos[indexPath.row].url!)
-//        cell.galleryImageView.loadUserImage(urlString: viewModel.photo_urls[indexPath.row])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let photoVC: PhotoViewController = .instantiate()
+        let photoViewModel = PhotoViewModel()
+        photoViewModel.photos = viewModel.photos
         photoVC.photo = viewModel.photos[indexPath.row]
+        photoVC.viewModel = photoViewModel
         navigationController?.pushViewController(photoVC, animated: true)
     }
     

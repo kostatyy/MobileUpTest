@@ -14,7 +14,6 @@ class GalleryViewModel {
     
     // Get Photos Urls
     func getPhotos(completion: @escaping ()->()) {
-        
         photos = PhotosCoreDataManager.shared.fetchPhotos()
 
         if photos.count == 0 { // If There Is No CoreData For Photo Yet

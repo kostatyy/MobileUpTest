@@ -18,12 +18,6 @@ extension UIViewController {
         navigationController?.navigationBar.backItem?.title = ""
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style:.plain, target:nil, action:nil)
         
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.tintColor = .black
-        navigationController?.view.backgroundColor = .clear
-        navigationController?.navigationBar.titleTextAttributes = [
-            .foregroundColor: UIColor.black
-        ]
     }
 }

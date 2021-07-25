@@ -9,6 +9,6 @@ import UIKit
 
 class PhotoViewModel {
     
-    
+    var photos = [Photo]()
     
 }

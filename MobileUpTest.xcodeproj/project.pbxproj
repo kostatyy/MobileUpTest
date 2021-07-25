@@ -30,6 +30,7 @@
 		524F8B5C26AB31A0006EB315 /* PhotoCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524F8B5B26AB31A0006EB315 /* PhotoCoreDataManager.swift */; };
 		524F8B5F26AB3F20006EB315 /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524F8B5E26AB3F20006EB315 /* PhotoViewModel.swift */; };
 		524F8B6326AB40A5006EB315 /* Int+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524F8B6226AB40A5006EB315 /* Int+Ext.swift */; };
+		524F8B6B26ADA2A7006EB315 /* PhotoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524F8B6A26ADA2A7006EB315 /* PhotoListCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		524F8B5B26AB31A0006EB315 /* PhotoCoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCoreDataManager.swift; sourceTree = "<group>"; };
 		524F8B5E26AB3F20006EB315 /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
 		524F8B6226AB40A5006EB315 /* Int+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Ext.swift"; sourceTree = "<group>"; };
+		524F8B6A26ADA2A7006EB315 /* PhotoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,9 +96,9 @@
 				524F8AF626A9B70B006EB315 /* SceneDelegate.swift */,
 				524F8B1426A9EB3C006EB315 /* Extensions */,
 				524F8B2B26A9FEED006EB315 /* Models */,
-				524F8B3F26AAFCB5006EB315 /* Views */,
 				524F8B1D26A9EEE7006EB315 /* Services */,
 				524F8B2426A9FB56006EB315 /* ViewModels */,
+				524F8B3F26AAFCB5006EB315 /* Views */,
 				524F8B0F26A9BAC4006EB315 /* Controllers */,
 				524F8AFD26A9B70E006EB315 /* Assets.xcassets */,
 				524F8AFA26A9B70B006EB315 /* Main.storyboard */,
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				524F8B4026AAFCBE006EB315 /* GalleryCell.swift */,
+				524F8B6A26ADA2A7006EB315 /* PhotoListCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				524F8B5426AB2C91006EB315 /* PhotoViewController.swift in Sources */,
 				524F8B2626A9FB62006EB315 /* LoginViewModel.swift in Sources */,
 				524F8B5F26AB3F20006EB315 /* PhotoViewModel.swift in Sources */,
+				524F8B6B26ADA2A7006EB315 /* PhotoListCell.swift in Sources */,
 				524F8B2F26AAE59A006EB315 /* UIViewController+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
