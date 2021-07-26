@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ter-Ji-iPa">
-                                <rect key="frame" x="24" y="220" width="366" height="93.5"/>
+                                <rect key="frame" x="24" y="225" width="366" height="93.5"/>
                                 <attributedString key="attributedText">
                                     <fragment>
                                         <string key="content">Mobile Up
@@ -34,7 +33,7 @@ Gallery</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uAw-PF-tEx">
-                                <rect key="frame" x="20.5" y="799.5" width="373" height="62.5"/>
+                                <rect key="frame" x="20.5" y="790.5" width="373" height="63"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="17"/>
                                 <state key="normal" title="Вход через VK">
@@ -49,10 +48,10 @@ Gallery</string>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="uAw-PF-tEx" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.07" id="1YF-gB-AbM"/>
+                            <constraint firstItem="ter-Ji-iPa" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" multiplier="0.6" id="3DQ-7A-372"/>
                             <constraint firstItem="uAw-PF-tEx" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="71t-GH-OFd"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="uAw-PF-tEx" secondAttribute="bottom" id="9r7-jG-tN7"/>
+                            <constraint firstAttribute="bottom" secondItem="uAw-PF-tEx" secondAttribute="bottom" multiplier="1.05" id="9r7-jG-tN7"/>
                             <constraint firstItem="uAw-PF-tEx" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.9" id="K7C-MP-5bi"/>
-                            <constraint firstItem="ter-Ji-iPa" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" multiplier="5" id="YXR-Az-uvf"/>
                             <constraint firstItem="ter-Ji-iPa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="pRo-2F-tdw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ter-Ji-iPa" secondAttribute="trailing" constant="24" id="zPh-7i-1tX"/>
                         </constraints>
@@ -120,16 +119,7 @@ Gallery</string>
                                 <rect key="frame" x="0.0" y="772.5" width="414" height="89.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewLayout key="collectionViewLayout" id="gEX-ng-xsD"/>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="98v-yW-U9X">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Krp-XL-5ak">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="V7z-A3-rn1"/>

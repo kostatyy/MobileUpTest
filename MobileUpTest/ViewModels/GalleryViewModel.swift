@@ -13,15 +13,20 @@ class GalleryViewModel {
     var photos = [Photo]()
     
     // Get Photos Urls
-    func getPhotos(completion: @escaping ()->()) {
+    func getPhotos(completion: @escaping (String?)->()) {
         photos = PhotosCoreDataManager.shared.fetchPhotos()
 
         if photos.count == 0 { // If There Is No CoreData For Photo Yet
-            VKManager.shared.getPhotos { (urls) in
-                self.photo_urls = urls
-                completion()
+            VKManager.shared.getPhotos { (result) in
+                switch result {
+                    case .success(let photos):
+                        self.photos = photos
+                        completion(nil)
+                    case .failure(let error):
+                        completion(error.localizedDescription)
+                    }
             }
-        } else { completion() }
+        } else { completion(nil) }
         
     }
     

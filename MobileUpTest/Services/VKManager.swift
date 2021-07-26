@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class VKManager {
     
@@ -21,7 +22,7 @@ class VKManager {
     private let vkApiMethod = "https://api.vk.com/method"
     private let ownerId = -128666765
     private let albumId = 266276915
-
+    
     
     var isSignedIn: Bool {
         guard let _ = accessToken, let expirationDate = tokenExpirationDate else { // If there is no access token and exp. Date
@@ -47,27 +48,20 @@ class VKManager {
     }
     
     /* Exchanging authorization code for access token */
-    public func exchangeCodeForToken(code: String, completion: @escaping ((Bool) -> Void)) {
+    public func exchangeCodeForToken(code: String, completion: @escaping ((String?) -> Void)) {
         let authAPI = "\(base_url)access_token?client_id=\(client_id)&client_secret=\(client_secret)&redirect_uri=\(redirect_uri)&code=\(code)"
-        let url = URL(string: authAPI)!
-        var request = URLRequest(url: url)
-
-        request.httpMethod = "POST"
         
-        let task = URLSession.shared.dataTask(with: request) {(data, resp, error) in
-            guard error == nil else { return }
-            guard let data = data else { return }
-            
-            do {
-                let result = try JSONDecoder().decode(VKAuthResponse.self, from: data)
-                self.cacheToken(result: result)
-                completion(true)
-            } catch {
-                print(error.localizedDescription)
-                completion(false)
+        AF.request(authAPI)
+            .validate()
+            .responseDecodable(of: VKAuthResponse.self) { (response) in
+                switch response.result {
+                case .success(let result):
+                    self.cacheToken(result: result)
+                    completion(nil)
+                case .failure(let error):
+                    completion(error.localizedDescription)
+                }
             }
-        }
-        task.resume()
     }
     
     /* Saving user's token and exp. Date */
@@ -77,51 +71,42 @@ class VKManager {
     }
     
     // Get Photos Urls
-    public func getPhotos(completion: @escaping ([String])->()) {
+    public func getPhotos(completion: @escaping (Result<[Photo], Error>) -> Void) {
         guard let access_token = accessToken else {return}
         let photosAPI = "\(vkApiMethod)/photos.get?owner_id=\(ownerId)&album_id=\(albumId)&access_token=\(access_token)&v=5.77"
-
-        let url = URL(string: photosAPI)!
-        let request = URLRequest(url: url)
-        
-        let task = URLSession.shared.dataTask(with: request) {(data, resp, error) in
-            guard error == nil else { return }
-            guard let data = data else { return }
-            
-            var photos_array = [PhotoItem]()
-            
-            do {
-                let resp: PhotoResponse = try JSONDecoder().decode(PhotoResponse.self, from: data)
-                resp.response.items.forEach { item in
-                    let photo_item = PhotoItem(url: nil, date: item.date)
-                    photos_array.append(photo_item)
-                }
-                
-                let filteredPhotos = resp.response.items.flatMap { // Filtering Photos By Type
-                    $0.sizes.filter { size in
-                        return size.type == "z"
+        var photos_array = [PhotoItem]()
+        AF.request(photosAPI)
+            .validate()
+            .responseDecodable(of: PhotoResponse.self) { (response) in
+                switch response.result {
+                case .success(let resp):
+                    resp.response.items.forEach { item in
+                        let photo_item = PhotoItem(url: nil, date: item.date)
+                        photos_array.append(photo_item)
                     }
-                }
-                
-                var urls = [String]()
-                var i = 0
-                
-                filteredPhotos.forEach { // Getting Urls Of Images
-                    photos_array[i].url = $0.url
                     
-                    guard PhotosCoreDataManager.shared.savePhoto(photoItem: photos_array[i]) != nil else { // Saving Photo To CoreData
-                        return
+                    let filteredPhotos = resp.response.items.flatMap { // Filtering Photos By Type
+                        $0.sizes.filter { size in
+                            return size.type == "z"
+                        }
                     }
-                    urls.append($0.url)
-                    i += 1
+                    
+                    var i = 0
+                    
+                    filteredPhotos.forEach { // Getting Urls Of Images
+                        photos_array[i].url = $0.url
+                        
+                        guard PhotosCoreDataManager.shared.savePhoto(photoItem: photos_array[i]) != nil else { // Saving Photo To CoreData
+                            return
+                        }
+                        i += 1
+                    }
+                    
+                    let photos = PhotosCoreDataManager.shared.fetchPhotos()
+                    completion(.success(photos))
+                case .failure(let error):
+                    completion(.failure(error))
                 }
-
-                completion(urls)
-
-            } catch {
-                print(error.localizedDescription)
             }
-        }
-        task.resume()
     }
 }

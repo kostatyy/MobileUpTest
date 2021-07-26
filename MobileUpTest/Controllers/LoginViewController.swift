@@ -9,25 +9,26 @@ import UIKit
 import WebKit
 
 class LoginViewController: UIViewController {
-
+    
     @IBOutlet weak var topLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
     
     private var viewModel = LoginViewModel()
+    private var authNavController: UINavigationController!
     
     /* VK Web View */
     private var vkWebView: WKWebView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
         setupViews()
     }
     
     private func setupViews() {
-        loginButton.layer.cornerRadius = 15
+        loginButton.layer.cornerRadius = loginButton.frame.height * 0.2
         loginButton.titleLabel?.font = UIFont.setFont(size: .Medium, weight: .semibold)
         topLabel.font = UIFont.setFont(size: .Big, weight: .bold)
     }
@@ -56,25 +57,32 @@ extension LoginViewController: WKNavigationDelegate {
         vkWebView.load(urlRequest)
         
         // Create Navigation Controller
-        let navController = UINavigationController(rootViewController: vkVC)
-        navController.setNavigationBarHidden(true, animated: false)
+        authNavController = UINavigationController(rootViewController: vkVC)
+        authNavController.setNavigationBarHidden(true, animated: false)
         
-        self.present(navController, animated: true, completion: nil)
+        self.present(authNavController, animated: true, completion: nil)
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        viewModel.requestForCallbackURL(request: navigationAction.request) { resp in
+        viewModel.requestForCallbackURL(request: navigationAction.request) { result in
             DispatchQueue.main.async {
                 self.dismiss(animated: true) {
-                    if resp {
+                    if let result = result {
+                        self.callErrorAlert(message: result)
+                    } else {
                         let galleryVC: GalleryViewController = .instantiate()
                         self.navigationController?.pushViewController(galleryVC, animated: true)
                     }
                 }
             }
-            
         }
         
         decisionHandler(.allow)
+    }
+    
+    // Handling Auth Errors
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        let message: String = error.localizedDescription
+        authNavController.callErrorAlert(message: message)
     }
 }

@@ -21,12 +21,14 @@ class GalleryViewController: UIViewController {
         customizeNavBarController()
         navigationItem.setHidesBackButton(true, animated: true)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Выход", style: .plain, target: self, action: #selector(logoutButtonTapped))
+        setupCollectionView()
         
-        DispatchQueue.main.async {
-            self.viewModel.getPhotos {
-                DispatchQueue.main.async {
-                    self.setupCollectionView()
+        viewModel.getPhotos { error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    self.callErrorAlert(message: error)
                 }
+                self.galleryCollectionView.reloadData()
             }
         }
         

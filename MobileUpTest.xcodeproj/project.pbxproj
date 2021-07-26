@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		271F59D61DC806E647A65BAE /* Pods_MobileUpTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0F61309556349D7EBC2BF4 /* Pods_MobileUpTest.framework */; };
 		524F8AF526A9B70B006EB315 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524F8AF426A9B70B006EB315 /* AppDelegate.swift */; };
 		524F8AF726A9B70B006EB315 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524F8AF626A9B70B006EB315 /* SceneDelegate.swift */; };
 		524F8AFC26A9B70B006EB315 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 524F8AFA26A9B70B006EB315 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D92E60F3DF810CAC165C878 /* Pods-MobileUpTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileUpTest.release.xcconfig"; path = "Target Support Files/Pods-MobileUpTest/Pods-MobileUpTest.release.xcconfig"; sourceTree = "<group>"; };
 		524F8AF126A9B70A006EB315 /* MobileUpTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileUpTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		524F8AF426A9B70B006EB315 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		524F8AF626A9B70B006EB315 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +62,8 @@
 		524F8B5E26AB3F20006EB315 /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
 		524F8B6226AB40A5006EB315 /* Int+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Ext.swift"; sourceTree = "<group>"; };
 		524F8B6A26ADA2A7006EB315 /* PhotoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoListCell.swift; sourceTree = "<group>"; };
+		AB0F61309556349D7EBC2BF4 /* Pods_MobileUpTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileUpTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3F73323B3D2EA7F5F176575 /* Pods-MobileUpTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileUpTest.debug.xcconfig"; path = "Target Support Files/Pods-MobileUpTest/Pods-MobileUpTest.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,17 +71,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				271F59D61DC806E647A65BAE /* Pods_MobileUpTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2770776241BB6CF1F20B9DFB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AB0F61309556349D7EBC2BF4 /* Pods_MobileUpTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		524F8AE826A9B70A006EB315 = {
 			isa = PBXGroup;
 			children = (
 				524F8AF326A9B70B006EB315 /* MobileUpTest */,
 				524F8AF226A9B70A006EB315 /* Products */,
+				8F85AAE2C7382FCC71CA27CF /* Pods */,
+				2770776241BB6CF1F20B9DFB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -169,6 +184,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		8F85AAE2C7382FCC71CA27CF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D3F73323B3D2EA7F5F176575 /* Pods-MobileUpTest.debug.xcconfig */,
+				1D92E60F3DF810CAC165C878 /* Pods-MobileUpTest.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -176,9 +200,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 524F8B0526A9B70E006EB315 /* Build configuration list for PBXNativeTarget "MobileUpTest" */;
 			buildPhases = (
+				71AE3D7C11B75996EE722C4E /* [CP] Check Pods Manifest.lock */,
 				524F8AED26A9B70A006EB315 /* Sources */,
 				524F8AEE26A9B70A006EB315 /* Frameworks */,
 				524F8AEF26A9B70A006EB315 /* Resources */,
+				16761E4293D06C6631BDF128 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -233,6 +259,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		16761E4293D06C6631BDF128 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MobileUpTest/Pods-MobileUpTest-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MobileUpTest/Pods-MobileUpTest-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MobileUpTest/Pods-MobileUpTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		71AE3D7C11B75996EE722C4E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MobileUpTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		524F8AED26A9B70A006EB315 /* Sources */ = {
@@ -403,12 +471,14 @@
 		};
 		524F8B0626A9B70E006EB315 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D3F73323B3D2EA7F5F176575 /* Pods-MobileUpTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RWU4M8Y9HU;
 				INFOPLIST_FILE = MobileUpTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -422,12 +492,14 @@
 		};
 		524F8B0726A9B70E006EB315 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D92E60F3DF810CAC165C878 /* Pods-MobileUpTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RWU4M8Y9HU;
 				INFOPLIST_FILE = MobileUpTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
