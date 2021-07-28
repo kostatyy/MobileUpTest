@@ -57,7 +57,7 @@ class PhotoViewController: UIViewController {
         photosCollectionView.register(PhotoListCell.self, forCellWithReuseIdentifier: PhotoListCell.reuseId)
     }
     
-    // Open Menu For Image To Save Or Share It
+    //MARK: - Open Menu For Image To Save Or Share It
     @objc private func openShareMenu() {
         let activityController = UIActivityViewController(activityItems: [photoImageView.image ?? UIImage(named: "image")!], applicationActivities: nil)
         activityController.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
@@ -103,7 +103,7 @@ extension PhotoViewController: UICollectionViewDataSource, UICollectionViewDeleg
         photoImageView.loadUserImage(urlString: selectedPhoto.url!)
     }
     
-    // Custom Layout
+    //MARK: - Custom Layout
     private func createCompostionalLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnv) -> NSCollectionLayoutSection? in
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),

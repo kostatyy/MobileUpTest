@@ -12,7 +12,7 @@ class GalleryViewModel {
     var photo_urls = [String]()
     var photos = [Photo]()
     
-    // Get Photos Urls
+    //MARK: - Get Photos Urls
     func getPhotos(completion: @escaping (String?)->()) {
         photos = PhotosCoreDataManager.shared.fetchPhotos()
 
@@ -30,7 +30,7 @@ class GalleryViewModel {
         
     }
     
-    // Logging out from VK account
+    //MARK: - Logging out from VK account
     func logoutFromVK(completion: @escaping ()->()) {
         UserDefaults.standard.removeObject(forKey: "access_token")
         UserDefaults.standard.removeObject(forKey: "expirationDate")

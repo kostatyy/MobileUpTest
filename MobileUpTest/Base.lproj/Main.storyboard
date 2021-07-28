@@ -33,7 +33,7 @@ Gallery</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uAw-PF-tEx">
-                                <rect key="frame" x="20.5" y="790.5" width="373" height="63"/>
+                                <rect key="frame" x="20.5" y="803.5" width="373" height="62.5"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="17"/>
                                 <state key="normal" title="Вход через VK">
@@ -50,7 +50,7 @@ Gallery</string>
                             <constraint firstItem="uAw-PF-tEx" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.07" id="1YF-gB-AbM"/>
                             <constraint firstItem="ter-Ji-iPa" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" multiplier="0.6" id="3DQ-7A-372"/>
                             <constraint firstItem="uAw-PF-tEx" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="71t-GH-OFd"/>
-                            <constraint firstAttribute="bottom" secondItem="uAw-PF-tEx" secondAttribute="bottom" multiplier="1.05" id="9r7-jG-tN7"/>
+                            <constraint firstAttribute="bottom" secondItem="uAw-PF-tEx" secondAttribute="bottom" constant="30" id="9r7-jG-tN7"/>
                             <constraint firstItem="uAw-PF-tEx" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.9" id="K7C-MP-5bi"/>
                             <constraint firstItem="ter-Ji-iPa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="pRo-2F-tdw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ter-Ji-iPa" secondAttribute="trailing" constant="24" id="zPh-7i-1tX"/>

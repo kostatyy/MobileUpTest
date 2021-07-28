@@ -12,18 +12,19 @@ class VKManager {
     
     static let shared = VKManager()
     
-    private let base_url = "https://oauth.vk.com/"
-    private let client_id = 7909445
-    private let client_secret = "jI7aLjzqJRPR4diSYjjj"
-    private let redirect_uri = "http://mobileUp.com/verify"
-    private let scopes = "photos"
-    
-    // Constants For Photos
-    private let vkApiMethod = "https://api.vk.com/method"
-    private let ownerId = -128666765
-    private let albumId = 266276915
-    
-    
+    private struct Constants {
+        static let base_url = "https://oauth.vk.com/"
+        static let client_id = 7909445
+        static let client_secret = "jI7aLjzqJRPR4diSYjjj"
+        static let redirect_uri = "http://mobileUp.com/verify"
+        static let scopes = "photos"
+        
+        // Constants For Photos
+        static let vkApiMethod = "https://api.vk.com/method"
+        static let ownerId = -128666765
+        static let albumId = 266276915
+    }
+
     var isSignedIn: Bool {
         guard let _ = accessToken, let expirationDate = tokenExpirationDate else { // If there is no access token and exp. Date
             return false
@@ -41,15 +42,15 @@ class VKManager {
         return UserDefaults.standard.object(forKey: "expirationDate") as? Date
     }
     
-    /* VK SignIn URL Link */
+    //MARK: - VK SignIn URL Link
     public var signInUrl: URL? {
-        let string = "\(base_url)authorize?client_id=\(client_id)&display=mobile&redirect_uri=\(redirect_uri)&scope=\(scopes)&response_type=code"
+        let string = "\(Constants.base_url)authorize?client_id=\(Constants.client_id)&display=mobile&redirect_uri=\(Constants.redirect_uri)&scope=\(Constants.scopes)&response_type=code"
         return URL(string: string)
     }
     
-    /* Exchanging authorization code for access token */
+    //MARK: - Exchanging authorization code for access token
     public func exchangeCodeForToken(code: String, completion: @escaping ((String?) -> Void)) {
-        let authAPI = "\(base_url)access_token?client_id=\(client_id)&client_secret=\(client_secret)&redirect_uri=\(redirect_uri)&code=\(code)"
+        let authAPI = "\(Constants.base_url)access_token?client_id=\(Constants.client_id)&client_secret=\(Constants.client_secret)&redirect_uri=\(Constants.redirect_uri)&code=\(code)"
         
         AF.request(authAPI)
             .validate()
@@ -64,16 +65,16 @@ class VKManager {
             }
     }
     
-    /* Saving user's token and exp. Date */
+    //MARK: - Saving user's token and exp. Date
     private func cacheToken(result: VKAuthResponse) {
         UserDefaults.standard.setValue(result.access_token, forKey: "access_token")
         UserDefaults.standard.setValue(Date().addingTimeInterval(TimeInterval(result.expires_in)), forKey: "expirationDate")
     }
     
-    // Get Photos Urls
+    //MARK: - Get Photos Urls
     public func getPhotos(completion: @escaping (Result<[Photo], Error>) -> Void) {
         guard let access_token = accessToken else {return}
-        let photosAPI = "\(vkApiMethod)/photos.get?owner_id=\(ownerId)&album_id=\(albumId)&access_token=\(access_token)&v=5.77"
+        let photosAPI = "\(Constants.vkApiMethod)/photos.get?owner_id=\(Constants.ownerId)&album_id=\(Constants.albumId)&access_token=\(access_token)&v=5.77"
         var photos_array = [PhotoItem]()
         AF.request(photosAPI)
             .validate()

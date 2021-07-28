@@ -16,17 +16,16 @@ extension UIImageView {
             self.image = cachedImage
         } else {
             let url = URL(string: urlString)!
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                guard let data = data else {
-                    return
-                }
-                
-                DispatchQueue.main.async() {
-                    guard let image = UIImage(data: data) else {return}
+            
+            let queue = DispatchQueue.global(qos: .utility)
+            queue.async{
+                if let data = try? Data(contentsOf: url), let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self.image = image
+                    }
                     imageCache.setObject(image, forKey: urlString as NSString)
-                    self.image = image
                 }
-            }.resume()
+            }
         }
     }
     

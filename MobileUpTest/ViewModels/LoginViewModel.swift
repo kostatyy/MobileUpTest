@@ -9,13 +9,11 @@ import UIKit
 
 class LoginViewModel {
     
-    /* VK Auth */
+    //MARK: - VK Auth
     func requestForCallbackURL(request: URLRequest, completion: @escaping (String?)->()) {
         
-        // Exchange code for access token
         let requestURLString = (request.url?.absoluteString)! as String
         
-        // Getting code
         let component = URLComponents(string: requestURLString)
         guard let code = component?.queryItems?.first(where: { $0.name == "code" })?.value else {
             return

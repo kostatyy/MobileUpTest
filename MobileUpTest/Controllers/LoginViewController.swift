@@ -16,7 +16,7 @@ class LoginViewController: UIViewController {
     private var viewModel = LoginViewModel()
     private var authNavController: UINavigationController!
     
-    /* VK Web View */
+    //MARK: - VK Web View
     private var vkWebView: WKWebView!
     
     override func viewDidLoad() {
@@ -33,7 +33,7 @@ class LoginViewController: UIViewController {
         topLabel.font = UIFont.setFont(size: .Big, weight: .bold)
     }
     
-    // Open VK Authorization Screen
+    //MARK: - Open VK Authorization Screen
     @IBAction func loginToVK(_ sender: UIButton) {
         vkWebView = WKWebView()
         self.vkAuthVC(vkWebView: vkWebView)
@@ -42,9 +42,8 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: WKNavigationDelegate {
     
-    /* Show VK Login Screen */
+    //MARK: - Show VK Login Screen
     func vkAuthVC(vkWebView: WKWebView) {
-        // Create VK Auth ViewController
         let vkVC = UIViewController()
         
         vkWebView.navigationDelegate = self
@@ -56,7 +55,6 @@ extension LoginViewController: WKNavigationDelegate {
         let urlRequest = URLRequest.init(url: url)
         vkWebView.load(urlRequest)
         
-        // Create Navigation Controller
         authNavController = UINavigationController(rootViewController: vkVC)
         authNavController.setNavigationBarHidden(true, animated: false)
         
@@ -80,7 +78,7 @@ extension LoginViewController: WKNavigationDelegate {
         decisionHandler(.allow)
     }
     
-    // Handling Auth Errors
+    //MARK: - Handling Auth Errors
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         let message: String = error.localizedDescription
         authNavController.callErrorAlert(message: message)

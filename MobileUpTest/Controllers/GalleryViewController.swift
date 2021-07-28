@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WebKit
 
 class GalleryViewController: UIViewController {
     
@@ -20,7 +21,7 @@ class GalleryViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         customizeNavBarController()
         navigationItem.setHidesBackButton(true, animated: true)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Выход", style: .plain, target: self, action: #selector(logoutButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Выход", style: .plain, target: self, action: #selector(showLogoutAlert))
         setupCollectionView()
         
         viewModel.getPhotos { error in
@@ -34,7 +35,7 @@ class GalleryViewController: UIViewController {
         
     }
     
-    // Setting Up Gallery Collection View
+    //MARK: - Setting Up Gallery Collection View
     private func setupCollectionView() {
         galleryCollectionView.collectionViewLayout = createCompostionalLayout()
         galleryCollectionView.dataSource = self
@@ -42,11 +43,39 @@ class GalleryViewController: UIViewController {
         galleryCollectionView.register(GalleryCell.self, forCellWithReuseIdentifier: GalleryCell.reuseId)
     }
     
-    // Logout from VK
-    @objc private func logoutButtonTapped() {
+    @objc private func showLogoutAlert() {
+        let alert = UIAlertController(title: "Выход", message: "message", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Выйти", style: .default) { _ in
+            self.logoutVKProfile()
+        })
+        alert.addAction(UIAlertAction(title: "Выйти и забыть аккаунт", style: .default) { _ in
+            self.removeCookies()
+            self.logoutVKProfile()
+        })
+        alert.addAction(UIAlertAction(title: "Отмена", style: .destructive) { _ in
+            self.dismiss(animated: true, completion: nil)
+        })
+        present(alert, animated: true)
+    }
+    
+    //MARK: - Logout from VK
+    private func logoutVKProfile() {
         let loginVC: LoginViewController = .instantiate()
         viewModel.logoutFromVK {
             self.navigationController?.pushViewController(loginVC, animated: false)
+        }
+    }
+    
+    //MARK: - Clear Cookies
+    private func removeCookies() {
+        HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
+        print("All cookies deleted")
+
+        WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+            records.forEach { record in
+                WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+                print("Cookie ::: \(record) deleted")
+            }
         }
     }
     
@@ -73,7 +102,7 @@ extension GalleryViewController: UICollectionViewDataSource, UICollectionViewDel
         navigationController?.pushViewController(photoVC, animated: true)
     }
     
-    // Custom Layout
+    //MARK: - Custom Layout
     private func createCompostionalLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { (sectionIndex, layoutEnv) -> NSCollectionLayoutSection? in
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5),

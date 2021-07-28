@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-/* Photos Core Data Manager */
+//MARK: - Photos Core Data Manager
 final class PhotosCoreDataManager {
     
     static var shared = PhotosCoreDataManager()
@@ -16,10 +16,10 @@ final class PhotosCoreDataManager {
     var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "Photos")
         container.loadPersistentStores { (_, error) in
-            guard error == nil else {
-                print(error!.localizedDescription)
-                return
+            guard let error = error else {
+               return
             }
+            print(error.localizedDescription)
         }
         return container
     }()
@@ -28,7 +28,7 @@ final class PhotosCoreDataManager {
         persistentContainer.viewContext
     }
     
-    // Save Photo
+    //MARK: - Save Photo
     func savePhoto(photoItem: PhotoItem) -> Photo? {
         let newPhoto = Photo(context: moc)
         newPhoto.setValue(photoItem.url, forKey: "url")
@@ -43,16 +43,7 @@ final class PhotosCoreDataManager {
         
     }
     
-    // Get Photo
-    func getPhoto(id: NSManagedObjectID) -> Photo? {
-        do {
-            return try moc.existingObject(with: id) as? Photo
-        } catch {
-            return nil
-        }
-    }
-    
-    // Get All Photos
+    //MARK: - Get All Photos
     func fetchPhotos() -> [Photo] {
         do {
             let fetchRequest = NSFetchRequest<Photo>(entityName: "Photo")
@@ -60,18 +51,6 @@ final class PhotosCoreDataManager {
             return photos
         } catch {
             return []
-        }
-    }
-    
-    // Delete All Photos
-    func deletePhotos() {
-        do {
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Photo")
-            let request: NSBatchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-            try moc.execute(request)
-            try moc.save()
-        } catch let error {
-            print(error.localizedDescription)
         }
     }
     
